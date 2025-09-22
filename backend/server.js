@@ -137,10 +137,7 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-// Sample route
-app.get("/", (req, res) => {
-  res.send("Backend is running 🚀");
-});
+
 
 // Login API
 app.post("/api/login", async (req, res) => {
@@ -210,7 +207,11 @@ app.put('/api/flats/:flatKey', async (req, res) => {
 // Serve static files from Vite build
 app.use(express.static(path.join(__dirname, "dist")));
 
-app.get("/", (req, res) => {
+// app.get("/", (req, res) => {
+//   res.sendFile(path.join(__dirname, "dist", "index.html"));
+// });
+
+app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
 
